@@ -1,0 +1,78 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{key}-{user_id}",
+ "creation": "2024-12-14 13:01:06.248325",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "key",
+  "column_break_lwyf",
+  "user_id",
+  "section_break_prbw",
+  "devices"
+ ],
+ "fields": [
+  {
+   "fieldname": "key",
+   "fieldtype": "Data",
+   "label": "key"
+  },
+  {
+   "fieldname": "column_break_lwyf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "user_id",
+   "fieldtype": "Data",
+   "label": "User"
+  },
+  {
+   "fieldname": "section_break_prbw",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "devices",
+   "fieldtype": "Table",
+   "label": "devices",
+   "options": "map_user_table"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-12-14 13:06:51.885688",
+ "modified_by": "Administrator",
+ "module": "Notification Relay",
+ "name": "relay_user_device_map",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
