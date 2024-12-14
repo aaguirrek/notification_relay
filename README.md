@@ -1,11 +1,3 @@
-## Notification Relay
-
-Notification Relay Server
-
-#### License
-
-mit
-
 # Push Notification Relay Server for Frappe Apps
 Enable push notifications for Frappe Apps.
 
