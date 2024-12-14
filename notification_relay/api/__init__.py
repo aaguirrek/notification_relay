@@ -23,8 +23,3 @@ def get_config():
 	response = Response(json.dumps(res), content_type='application/json')
 	response.status_code = 200
 	return response
-
-@frappe.whitelist()
-def getfavicon():
-	return json.loads(frappe.get_doc("Notification Relay Config","Notification Relay Config").firebase_config)["apiKey"]
-	return utils.get_url(frappe.get_website_settings("favicon"),True)
