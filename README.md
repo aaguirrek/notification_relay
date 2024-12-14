@@ -13,7 +13,7 @@ Enable push notifications for Frappe Apps.
 To be able to run this application, you will need to do the following:
 
 1. Get the app with Frappe Bench `python -m venv env`
-2. Install all requirements `pip install -r requirements.txt`
+2. Install all requirements if necessary `pip install -r requirements.txt`
 4. Create a Firebase Project & get Service Account credentials [Link](https://sharma-vikashkr.medium.com/firebase-how-to-setup-a-firebase-service-account-836a70bb6646)
 5. Put your Google App credentials (content of json file) in the Notification Relay Config Doctype in the Service Account field
   ``` json
