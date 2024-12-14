@@ -6,7 +6,8 @@
  "engine": "InnoDB",
  "field_order": [
   "firebase_config",
-  "vapid_public_key"
+  "vapid_public_key",
+  "service_account"
  ],
  "fields": [
   {
@@ -19,12 +20,17 @@
    "fieldtype": "Data",
    "label": "VAPID PUBLIC KEY",
    "length": 245
+  },
+  {
+   "fieldname": "service_account",
+   "fieldtype": "JSON",
+   "label": "Service Account"
   }
  ],
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-12-14 15:30:50.088737",
+ "modified": "2024-12-14 15:44:20.805028",
  "modified_by": "Administrator",
  "module": "Notification Relay",
  "name": "Notification Relay Config",

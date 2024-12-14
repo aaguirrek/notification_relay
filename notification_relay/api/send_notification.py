@@ -5,12 +5,16 @@ import frappe
 from frappe import utils
 from firebase_admin import messaging
 import frappe.hooks
+from firebase_admin import credentials
 
 @frappe.whitelist()
 def user():
 	config = frappe.get_doc("Notification Relay Config","Notification Relay Config")
 	if isinstance(config.firebase_config,str):
 		config.firebase_config = json.loads(config.firebase_config)
+	if isinstance(config.service_account,str):
+		config.service_account = json.loads(config.service_account)
+
 	FIREBASE_CONFIG = config.firebase_config
 	
 	project_name = frappe.request.args.get('project_name')
@@ -22,7 +26,10 @@ def user():
 	data = json.loads(frappe.request.args.get('data'))
 	
 	if not firebase_admin._apps: 
-		firebase_admin.initialize_app(options=FIREBASE_CONFIG)
+		cred = credentials.Certificate(config.service_account)
+		firebase_admin.initialize_app(credential=cred,options=FIREBASE_CONFIG )
+
+
 	if isinstance(data,str):
 		data = json.loads(data)
 	registration_tokens = []
@@ -59,14 +66,21 @@ def topic():
 	config = frappe.get_doc("Notification Relay Config","Notification Relay Config")
 	if isinstance(config.firebase_config,str):
 		config.firebase_config = json.loads(config.firebase_config)
+	
+	if isinstance(config.service_account,str):
+		config.service_account = json.loads(config.service_account)
+		
 	FIREBASE_CONFIG = config.firebase_config
 	
 	topic = frappe.request.args.get('topic')
 	title = frappe.request.args.get('title')
 	body = frappe.request.args.get('body')
 	data = json.loads(frappe.request.args.get('data'))
+	
 	if not firebase_admin._apps: 
-		firebase_admin.initialize_app(options=FIREBASE_CONFIG)
+		cred = credentials.Certificate(config.service_account)
+		firebase_admin.initialize_app(credential=cred,options=FIREBASE_CONFIG )
+
 	if isinstance(data,str): 
 		data = json.loads(data)
 	message = messaging.Message(
