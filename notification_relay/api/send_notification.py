@@ -5,10 +5,13 @@ import frappe
 from frappe import utils
 from firebase_admin import messaging
 import frappe.hooks
-from .my_secrets import FIREBASE_CONFIG
 
 @frappe.whitelist()
 def user():
+	config = frappe.get_doc("Notification Relay Config","Notification Relay Config")
+	if isinstance(config.firebase_config,str):
+		config.firebase_config = json.loads(config.firebase_config)
+	FIREBASE_CONFIG = config.firebase_config
 	
 	project_name = frappe.request.args.get('project_name')
 	site_name = frappe.request.args.get('site_name')
@@ -53,6 +56,10 @@ def user():
 
 @frappe.whitelist()
 def topic():
+	config = frappe.get_doc("Notification Relay Config","Notification Relay Config")
+	if isinstance(config.firebase_config,str):
+		config.firebase_config = json.loads(config.firebase_config)
+	FIREBASE_CONFIG = config.firebase_config
 	
 	topic = frappe.request.args.get('topic')
 	title = frappe.request.args.get('title')
