@@ -14,8 +14,6 @@ def user():
 		config.firebase_config = json.loads(config.firebase_config)
 	if isinstance(config.service_account,str):
 		config.service_account = json.loads(config.service_account)
-
-	FIREBASE_CONFIG = config.firebase_config
 	
 	project_name = frappe.request.args.get('project_name')
 	site_name = frappe.request.args.get('site_name')
@@ -27,7 +25,7 @@ def user():
 	
 	if not firebase_admin._apps: 
 		cred = credentials.Certificate(config.service_account)
-		firebase_admin.initialize_app(credential=cred,options=FIREBASE_CONFIG )
+		firebase_admin.initialize_app(credential=cred,options=config.firebase_config )
 
 
 	if isinstance(data,str):
@@ -69,8 +67,6 @@ def topic():
 	
 	if isinstance(config.service_account,str):
 		config.service_account = json.loads(config.service_account)
-		
-	FIREBASE_CONFIG = config.firebase_config
 	
 	topic = frappe.request.args.get('topic')
 	title = frappe.request.args.get('title')
@@ -79,7 +75,7 @@ def topic():
 	
 	if not firebase_admin._apps: 
 		cred = credentials.Certificate(config.service_account)
-		firebase_admin.initialize_app(credential=cred,options=FIREBASE_CONFIG )
+		firebase_admin.initialize_app(credential=cred,options=config.firebase_config )
 
 	if isinstance(data,str): 
 		data = json.loads(data)
